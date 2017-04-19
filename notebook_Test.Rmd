@@ -1,0 +1,36 @@
+---
+title: "R Notebook"
+output: html_notebook
+author:yunbin.jiang
+---
+```{r}
+#load libraries
+library(ggplot2)
+
+```
+
+```{r}
+#plot 
+plot(cars)
+```
+
+#Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+```{r}
+summary(iris)
+```
+
+```{r}
+
+qplot(Sepal.Length, Petal.Length, data = iris, color= Species, size = Petal.Width)
+
+```
+
+```{r step}
+#knitr::read_chunk("example.R")
+1+1
+```
+
+```{r}
+
+```
+
