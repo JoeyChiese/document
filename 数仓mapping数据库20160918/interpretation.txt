@@ -1,0 +1,23 @@
+大家好，
+
+         之前提给数仓的从脱敏库迁移到分析平台的routine类任务已开发完成，并已在分析平台上线（定期在dsst库更新）。经初步验证，没有大的问题，具体细节是否有偏差，还需大家在使用的过程及时发现并提出。
+
+         如下截图为本次迁移的所有任务表：
+
+1.       大家用的比较多的应该是我用红色方框圈出的三张表。其中spr表迁移后的表名为adl_prod_rev_spr_r_data, 而adl_prod_rev_spr_r_data_mid只是中间表，大家不用关心；match_integration_unqf_pboc, match_integration_unqf_pboc_NCIIC, match_integration_unqf_pboc_bairong, match_integration_unqf_pboc_wecash也只是中间表，大家只需使用最终的match_integration_unqf_all表
+
+2.       acct_type_temp表涉及的表全为审批系统过程中的表。由于luma系统上线等原因，这些表不再更新，因此acct_type_temp只做一次初始化，后续不再更新。
+
+3.       lostconnectioninfadd表为催收的表。由于生成逻辑过于简单，为了减轻新数仓的负担，不再迁移；如需使用，可自行生成。
+
+ 
+
+         最后，跟大家讲下表的用法。下面涉及的所有表每次更新时均为全量更新，但保留历史更新记录，可以近似认为是拉链表。
+
+         举个例子：如要使用adl_prod_rev_spr_r_data上周五（20161125）更新的全部数据，代码为 select * from adl_prod_rev_spr_r_data where dt = ‘20161124’  （此处的时间为更新时间的前一天）
+
+ 
+
+        以上，望周知。谢谢！
+
+         
